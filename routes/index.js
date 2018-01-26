@@ -10,32 +10,7 @@ router.get('/', function(req, res, next) {
 router.get('/about', function(req, res, next) {
   res.render('about', { title: 'CodeCollab - Google Docs for your code.' });
 });
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login to CodeCollab!' });
-});
-router.route('/register')
-   .get(function(req,res,next) {
-      res.render('register', { title: 'Register to CodeCollab!' });
-   // })
-   // .post(function(req, res, next) {
-   //    req.checkBody('name', 'Name field is empty.').notEmpty();
-   //    req.checkBody('email', 'Invalid email.').notEmpty();
-   //    req.checkBody('password', 'Invalid password.').notEmpty();
-   //    var errors = req.validationErrors();
-   //    console.log(errors); //[{location, param, msg, value}, {location, param, msg, value}]
-   //
-   //    if(errors) {
-   //       res.render('contact', {
-   //          title: 'CodeCollab - Google Docs for your code.',
-   //          name: req.body.name,
-   //          email: req.body.email,
-   //          message: req.body.message,
-   //          errorMessages: errors
-   //
-   //       });
-   //    }
-   // })
-});
+
 
 router.route('/contact')
    .get(function(req, res, next) {
