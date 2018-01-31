@@ -20,7 +20,35 @@ var authRoute = require('./routes/auth');
 var taskRoute = require('./routes/task');
 
 
-mongoose.connect(config.dbConnstring);
+
+
+if (process.env.MONGODB_URI) {
+	mongoose.connect(process.env.MONGODB_URI);
+} else {
+   mongoose.connect(config.dbConnstring); //'mongodb://127.0.0.1:27017/codecollab',
+
+}
+// MongoDB configuration (Change this URL to your own DB)
+var database = mongoose.connection;
+
+
+database.on("error", function(err) {
+  console.log("Mongoose Error: ", err);
+});
+
+database.once("open", function() {
+  console.log("Mongoose connection successful.");
+});
+
+
+
+
+
+
+
+
+
+
 
 global.User = require('./models/user')
 global.Task = require('./models/task')

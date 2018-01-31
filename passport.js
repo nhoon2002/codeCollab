@@ -28,6 +28,7 @@ passport.use(new LocalStrategy({
                message: 'Incorrect username or password'
             });
          }
+         console.log(user);
          return done(null, user)
       })
    }

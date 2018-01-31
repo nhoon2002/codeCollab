@@ -19,3 +19,7 @@ body {
    max-width: 500px;
    margin: 0 auto;
 }
+
+#chatBox {
+   border: 2px dashed black;
+}

@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+// Note: Mongo DB connection must be live in order to proceed with these post requests.
+
+
 router.route('/login')
    .get(function(req, res, next) {
       res.render('login', { title: 'Login to CodeCollab!' });
