@@ -17,13 +17,19 @@ passport.use(new LocalStrategy({
    },
    function(username, password, done) {
       User.findOne({email: username}, function(err, user) {
-         if(err) return done(err);
+         if(err) {
+           console.log(err);
+           return done(err);
+         }
          if(!user) {
+            console.log(user);
+            // console.log();
             return done(null, false, {
                message: 'Incorrect username or password!'
             });
          }
          if (!user.validPassword(password)) {
+           console.log(password);
             return done(null, false, {
                message: 'Incorrect username or password'
             });

@@ -2,7 +2,7 @@
 
    <div class="row">
       <div class="col-md-9 col-sm-12" id="editorHolder" >
-         <textarea id="code-screen"></textarea>
+         <textarea id="code-screen">{{content}}</textarea>
       </div>
       <div class="col-md-3 col-sm-12" id="chatBox">
          <div class="card card-primary">
@@ -45,16 +45,38 @@
 </div>
 <input type="hidden" value="{{roomId}}" id="roomId" />
 <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.34.0/codemirror.min.js'></script>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.34.0/mode/javascript/javascript.min.js'></script>
+
+<script src="/plugins/ot/ot.js"></script>
+
 <script src='/socket.io/socket.io.js'></script>
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script>
+   var EditorClient = ot.EditorClient;
+   var SocketIOAdapter = ot.SocketIOAdapter;
+   var CodeMirrorAdapter = ot.CodeMirrorAdapter;
    var socket = io.connect('http://localhost:3000');
    var editor = CodeMirror.fromTextArea(document.getElementById("code-screen"), {
       lineNumbers: true,
       theme: 'monokai'
 
    });
+   var code = $('#code-screen').val();
+   var cmClient;
+   function init(str, revision, clients, serverAdapter) {
+     if(!code){
+       editor.setValue(str);
+     }
+     cmClient = window.cmClient = new EditorClient(
+       revision, clients, serverAdapter, new CodeMirrorAdapter(editor)
+     );
+   };
+
+   socket.on('doc', function(obj) {
+     init(obj.str, obj.revision, obj.clients, new SocketIOAdapter(socket));
+   });
+
    var username = $("#chatBox-username").val();
    if(username === "") {
       var userId = Math.floor(Math.random() * 9999).toString();
@@ -63,7 +85,7 @@
    }
 
    var roomId = $('#roomId').val();
-   socket.emit('joinRoom', {room: roomId});
+   socket.emit('joinRoom', {room: roomId, username: username});
 
    function userMessage(name,text) {
       return (
