@@ -32,7 +32,9 @@ body {
   height: 85vh !important;
 }
 .card-body {
+  overflow-y: scroll;
   height: 70vh;
+  padding-bottom: 0;
 }
 
 @media (max-width: 768px)  {

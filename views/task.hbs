@@ -6,18 +6,20 @@
       </div>
       <div class="col-md-5 col-sm-12 col-lg-4" id="chatBox">
          <div class="card card-primary">
-            <div class="card-block">
+
                <!-- ChatBox -->
-               {{!-- <span class="pull-right" id="chatBox-username"> --}}
+               <span class="pull-right" id="chatBox-username">
                   {{#if user}}
-                     Hello, {{user.name}}<hr/>
+                     {{user.name}}
                   {{/if}}
-               {{!-- </span> --}}
-            </div>
-            <div class="card-body">
-               <ul class="list-unstyled" style="overflow-y: scroll" id="chatBox-listMessages">
+               </span>
+
+            <div class="card-body" id="card-body">
+              {{!-- <div style="overflow-y: scroll"> --}}
+               <ul class="list-unstyled" id="chatBox-listMessages">
 
                </ul>
+             {{!-- </div> --}}
 
             </div>
             <div class="card-footer" style="position:relative; bottom: 0;">
@@ -77,6 +79,10 @@
      init(obj.str, obj.revision, obj.clients, new SocketIOAdapter(socket));
    });
 
+   var objDiv = document.getElementById('card-body');
+
+
+   // console.log(user);
    var username = $("#chatBox-username").val();
    if(username === "") {
       var userId = Math.floor(Math.random() * 9999).toString();
@@ -106,13 +112,23 @@
    }
 
    function sendMessage() {
+     // console.log(user);
       var userMessage = $('#userMessage').val();
+      console.log(username,'username from sendMessage()');
       socket.emit('chatMessage', {message: userMessage, username: username});
       $('#userMessage').val("");
    }
 
    socket.on('chatMessage', function(data) {
-      $('#chatBox-listMessages').append(userMessage(data.username, data.message));
+     console.log(data, 'data from socket');
+     var name = data.username;
+      if(data.username == username) {
+        console.log(name, username);
+        name = 'me';
+        console.log(name, username);
+      }
+      $('#chatBox-listMessages').append(userMessage(name, data.message));
+       objDiv.scrollTop = objDiv.scrollHeight;
    })
 
 
