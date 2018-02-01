@@ -21,5 +21,25 @@ body {
 }
 
 #chatBox {
-   border: 2px dashed black;
+   /* border: 2px dashed black; */
+}
+
+/* #code-screen {
+  height: 95vh;
+} */
+
+.CodeMirror {
+  height: 85vh !important;
+}
+.card-body {
+  height: 70vh;
+}
+
+@media (max-width: 768px)  {
+  .CodeMirror {
+    height: 50vh !important;
+  }
+  .card-body {
+    height: 20vh;
+  }
 }

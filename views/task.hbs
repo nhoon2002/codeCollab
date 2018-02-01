@@ -1,30 +1,30 @@
-<div class="container">
+
 
    <div class="row">
-      <div class="col-md-9 col-sm-12" id="editorHolder" >
+      <div class="col-md-7 col-sm-12 col-lg-8" id="editorHolder" >
          <textarea id="code-screen">{{content}}</textarea>
       </div>
-      <div class="col-md-3 col-sm-12" id="chatBox">
+      <div class="col-md-5 col-sm-12 col-lg-4" id="chatBox">
          <div class="card card-primary">
             <div class="card-block">
                <!-- ChatBox -->
-               <span class="pull-right" id="chatBox-username">
+               {{!-- <span class="pull-right" id="chatBox-username"> --}}
                   {{#if user}}
-                     {{user.name}}
+                     Hello, {{user.name}}<hr/>
                   {{/if}}
-               </span>
+               {{!-- </span> --}}
             </div>
             <div class="card-body">
-               <ul class="list-unstyled" style="height: 300px; overflow-y: scroll" id="chatBox-listMessages">
+               <ul class="list-unstyled" style="overflow-y: scroll" id="chatBox-listMessages">
 
                </ul>
 
             </div>
-            <div class="card-footer">
+            <div class="card-footer" style="position:relative; bottom: 0;">
                <div class="input-group">
-                  <input class="form-control" type="text" placeholder="Enter message..." id="userMessage"/>
+                  <input class="form-control" type="text" placeholder="" id="userMessage"/>
 
-                     <button class="btn btn-success" type="button" onclick="sendMessage()"></button>
+                     <button class="btn btn-success" type="submit" onclick="sendMessage()">></button>
 
 
                </div>
@@ -42,7 +42,7 @@
 
 
 
-</div>
+
 <input type="hidden" value="{{roomId}}" id="roomId" />
 <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.34.0/codemirror.min.js'></script>
 
