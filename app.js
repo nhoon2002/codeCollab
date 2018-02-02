@@ -28,6 +28,7 @@ if (process.env.MONGODB_URI) {
    mongoose.connect(config.dbConnstring); //'mongodb://127.0.0.1:27017/codecollab',
 
 }
+
 // MongoDB configuration (Change this URL to your own DB)
 var database = mongoose.connection;
 
