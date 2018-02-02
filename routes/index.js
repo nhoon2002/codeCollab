@@ -35,7 +35,7 @@ router.route('/contact')
       } else {
          var mailOptions = {
             from: 'CodeCollab <noreply@codecollab.com',
-            to: 'kombodafoo@gmail.com'
+            to: 'kombodafoo@gmail.com',
             subject: 'Test email from CodeCollab',
             text: req.body.message
 
