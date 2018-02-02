@@ -1,8 +1,21 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h2>{{title}}</h2>
+<p>
+  <h2>{{title2}}</h2>
+</p>
+
+<p>Enjoy a real-time, fully-functional coding editor that you can share with others.</p>
+
+<a href="/about"><button class="btn btn-primary">How It Works</button></a>
+<hr/>
+
+
+
+
 
 
 {{#if user}}
-   <button class="btn btn-success"><a href="/createTask">Create New Task</a></button>
+   <a href="/createTask"><button class="btn btn-success">Create New Task</button></a>
+   {{else}}
+     <a href="/login"><button class="btn btn-success">Login</button></a>
+     <a href="/register"><button class="btn btn-danger">Register</button></a>
 {{/if}}
- 

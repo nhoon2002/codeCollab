@@ -5,16 +5,16 @@ var config = require('../config');
 var transporter = nodemailer.createTransport(config.mailer);
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'FROM INDEX.JS' });
+  res.render('index', { title: 'Welcome to CodeCollab', title2: 'the Google Docs for your code!' });
 });
 router.get('/about', function(req, res, next) {
-  res.render('about', { title: 'CodeCollab - Google Docs for your code.' });
+  res.render('about', { title: 'CodeCollab - Google Docs for your code.', videoURL: 'UftjOcwKJJ8' });
 });
 
 
 router.route('/contact')
    .get(function(req, res, next) {
-      res.render('contact', {title: 'CodeCollab - Google Docs for your code.'});
+      res.render('contact', {title: 'Contact Us', subtitle: "Leave us any feedback and we'll get back to you as soon as possible!"});
    })
    .post(function(req, res, next) {
       req.checkBody('name', 'Name field is empty.').notEmpty();
