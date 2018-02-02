@@ -5,23 +5,25 @@
          <textarea id="code-screen">{{content}}</textarea>
       </div>
       <div class="col-md-5 col-sm-12 col-lg-4" id="chatBox">
-         <div class="card card-primary">
+         <div class="card">
 
                <!-- ChatBox -->
-               <span class="pull-right" id="chatBox-username">
-                  {{#if user}}
-                     {{user.name}}
-                  {{/if}}
-               </span>
+               <div class="card-header text-center">
+                 <span class="card-title">Chat: </span>
+                 <span class="card-subtitle mb-2 text-muted" id="chatBox-username">
+                    {{#if user}}
+                       {{user.name}}
+                    {{/if}}
+                 </span>
+               </div>
+
 
             <div class="card-body" id="card-body">
-              {{!-- <div style="overflow-y: scroll"> --}}
                <ul class="list-unstyled" id="chatBox-listMessages">
-
+                 {{!-- Holder for individual messages --}}
                </ul>
-             {{!-- </div> --}}
-
             </div>
+
             <div class="card-footer" style="position:relative; bottom: 0;">
                <div class="input-group">
                   <input class="form-control" type="text" placeholder="" id="userMessage"/>

@@ -1,11 +1,11 @@
-'user strict'
+'use strict';
 
 module.exports = {
    mailer: {
       service: 'Gmail',
       auth: {
-         user: '<USEREMAIL>',
-         pass: '<USERPASSWORD>'
+         user: process.env.MYEMAIL,
+         pass: process.env.MYPW
       }
    },
    dbConnstring: 'mongodb://127.0.0.1:27017/codecollab',
